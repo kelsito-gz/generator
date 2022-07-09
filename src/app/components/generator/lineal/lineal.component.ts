@@ -15,6 +15,7 @@ export class LinealComponent implements OnInit {
       Seed: ['', [Validators.required]],
       K: ['', Validators.required],
       G: ['', Validators.required],
+      Ammount: ['', Validators.required],
       C: ['', Validators.required]
     })
   }
@@ -42,13 +43,14 @@ export class LinealComponent implements OnInit {
     let c = parseFloat(this.formLineal.controls['C'].value);
     let k = parseFloat(this.formLineal.controls['K'].value);
     let seed = parseFloat(this.formLineal.controls['Seed'].value);
-    if(k && g && c && seed)
+    let ammount = parseFloat(this.formLineal.controls['Ammount'].value);
+    if(k && g && c && seed && ammount)
       return true;
     return false;
   }
 
   simulate(){
-    
+
   }
 
 }

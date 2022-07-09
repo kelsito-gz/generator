@@ -20,6 +20,11 @@
             <input type="text" formControlName="C" matInput>
             <mat-error *ngIf="formLineal.controls['C'].hasError('required')">The variable is required</mat-error>
         </mat-form-field>
+        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+            <mat-label>Amount of numbers</mat-label>
+            <input type="text" formControlName="Ammount" matInput>
+            <mat-error *ngIf="formLineal.controls['Ammount'].hasError('required')">The variable is required</mat-error>
+        </mat-form-field>
 
 
         <button mat-raised-button [disabled]="!canSimulate()" (click)="simulate()">Simulate</button>

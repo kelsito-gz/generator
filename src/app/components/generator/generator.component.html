@@ -1,1 +1,20 @@
-<p>generator works!</p>
+<mat-horizontal-stepper>
+    <mat-step label="Lineal" state="lineal">
+        <app-lineal></app-lineal>
+    </mat-step>
+    <mat-step label="Multiplicative" state="multiplicative">
+        <app-multiplicative></app-multiplicative>
+    </mat-step>
+    <mat-step label="Javascript" state="computer">
+        <app-javascript></app-javascript>
+    </mat-step>
+    <ng-template matStepperIcon="multiplicative">
+        <mat-icon>call_made</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="computer">
+        <mat-icon>computer</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="lineal">
+        <mat-icon>add</mat-icon>
+    </ng-template>
+</mat-horizontal-stepper>

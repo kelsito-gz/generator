@@ -7,6 +7,7 @@ import { JavascriptComponent } from './javascript/javascript.component';
 import { GeneratorComponent } from './generator.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ModalTypeGeneratorComponent } from './modal-type-generator/modal-type-generator.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LinealComponent,
     MultiplicativeComponent,
     JavascriptComponent,
-    GeneratorComponent
+    GeneratorComponent,
+    ModalTypeGeneratorComponent
   ],
   imports: [
     CommonModule,

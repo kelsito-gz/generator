@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GeneratorModule } from './components/generator/generator.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GeneratorModule
+    GeneratorModule,
+    BrowserAnimationsModule
   ],
   providers: [
     

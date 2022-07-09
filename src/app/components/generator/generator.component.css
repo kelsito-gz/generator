@@ -5,3 +5,16 @@
   .mat-form-field {
     margin-top: 16px;
   }
+
+  .stepper{
+    margin: 50px auto;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 20%);
+  }
+
+  .paragraph{
+    display: block;
+    font-size: 15px;
+    text-align: justify;
+    padding-top: 50px;
+  }

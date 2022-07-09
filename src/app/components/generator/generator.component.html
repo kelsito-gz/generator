@@ -1,20 +1,32 @@
-<mat-horizontal-stepper>
-    <mat-step label="Lineal" state="lineal">
-        <app-lineal></app-lineal>
-    </mat-step>
-    <mat-step label="Multiplicative" state="multiplicative">
-        <app-multiplicative></app-multiplicative>
-    </mat-step>
-    <mat-step label="Javascript" state="computer">
-        <app-javascript></app-javascript>
-    </mat-step>
-    <ng-template matStepperIcon="multiplicative">
-        <mat-icon>call_made</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="computer">
-        <mat-icon>computer</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="lineal">
-        <mat-icon>add</mat-icon>
-    </ng-template>
-</mat-horizontal-stepper>
+<div class="container">
+    <mat-label class="paragraph">A <span class="bold">pseudorandom number generator</span> is a deterministic number generator that is based on the initial values of a seed. 
+        It is an algorithm that generates numbers between 0 and 1 based on a mathematical formula and the input values dictate how uniform the entered values will be.
+        The numbers does not includes the 1.
+        The <span class="bold">entered values </span> require a study to be able to find the ones that generate the best results, but there are certain rules to try to comply with for this. 
+        For example the additive constant must be prime relative to the modulator. 
+        The multiplicative constant is created from k, in the relation 4*k + 1.
+    </mat-label>
+
+    <mat-horizontal-stepper class="stepper">
+        <mat-step label="Lineal" state="lineal">
+            <app-lineal></app-lineal>
+        </mat-step>
+        <mat-step label="Multiplicative" state="multiplicative">
+            <app-multiplicative></app-multiplicative>
+        </mat-step>
+        <mat-step label="Javascript" state="computer">
+            <app-javascript></app-javascript>
+        </mat-step>
+        <ng-template matStepperIcon="multiplicative">
+            <mat-icon>call_made</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="computer">
+            <mat-icon>computer</mat-icon>
+        </ng-template>
+        <ng-template matStepperIcon="lineal">
+            <mat-icon>add</mat-icon>
+        </ng-template>
+    </mat-horizontal-stepper>
+</div>
+
+

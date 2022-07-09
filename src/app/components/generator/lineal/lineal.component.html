@@ -1,1 +1,28 @@
-<p>lineal works!</p>
+<mat-card>
+    <form name="formLineal" [formGroup]="formLineal" class="row">
+        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+            <mat-label>Seed</mat-label>
+            <input type="text" formControlName="Seed" matInput>
+            <mat-error *ngIf="formLineal.controls['Seed'].hasError('required')">The variable is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+            <mat-label>Var G</mat-label>
+            <input type="text" formControlName="G" matInput>
+            <mat-error *ngIf="formLineal.controls['G'].hasError('required')">The variable is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+            <mat-label>Var K</mat-label>
+            <input type="text" formControlName="K" matInput>
+            <mat-error *ngIf="formLineal.controls['K'].hasError('required')">The variable is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+            <mat-label>Additive constant</mat-label>
+            <input type="text" formControlName="C" matInput>
+            <mat-error *ngIf="formLineal.controls['C'].hasError('required')">The variable is required</mat-error>
+        </mat-form-field>
+
+
+        <button mat-raised-button [disabled]="!canSimulate()" (click)="simulate()">Simulate</button>
+    </form>
+</mat-card>
+

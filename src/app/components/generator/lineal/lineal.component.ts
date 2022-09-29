@@ -38,17 +38,6 @@ export class LinealComponent implements OnInit {
     return Math.pow(2, g);
   }
 
-  canSimulate(): boolean{
-    let g = parseFloat(this.formLineal.controls['G'].value);
-    let c = parseFloat(this.formLineal.controls['C'].value);
-    let k = parseFloat(this.formLineal.controls['K'].value);
-    let seed = parseFloat(this.formLineal.controls['Seed'].value);
-    let ammount = parseFloat(this.formLineal.controls['Ammount'].value);
-    if(k && g && c && seed && ammount)
-      return true;
-    return false;
-  }
-
   simulate(){
 
   }

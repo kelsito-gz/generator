@@ -27,7 +27,7 @@
         </mat-form-field>
 
 
-        <button mat-raised-button [disabled]="!canSimulate()" (click)="simulate()">Simulate</button>
+        <button mat-raised-button [disabled]="formLineal.status != 'VALID'" (click)="simulate()">Simulate</button>
     </form>
 </mat-card>
 

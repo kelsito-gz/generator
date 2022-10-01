@@ -7,6 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatFormFieldModule,
     MatCardModule,
     MatButtonModule,
+    MatRadioModule,
     MatDialogModule,
   ],
   exports: [
@@ -26,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatIconModule,
     MatFormFieldModule,
+    MatRadioModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,

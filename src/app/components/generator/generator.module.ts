@@ -6,7 +6,7 @@ import { MultiplicativeComponent } from './multiplicative/multiplicative.compone
 import { JavascriptComponent } from './javascript/javascript.component';
 import { GeneratorComponent } from './generator.component';
 import { MaterialModule } from 'src/app/material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalTypeGeneratorComponent } from './modal-type-generator/modal-type-generator.component';
 
 
@@ -22,6 +22,7 @@ import { ModalTypeGeneratorComponent } from './modal-type-generator/modal-type-g
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   exports:[
     GeneratorComponent,

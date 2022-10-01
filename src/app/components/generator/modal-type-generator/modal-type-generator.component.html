@@ -1,1 +1,52 @@
-<p>modal-type-generator works!</p>
+<mat-radio-group (change)="onChangeRadioGroup($event)" class="radio-buttons">
+  <mat-radio-button value="uniform">Uniform</mat-radio-button>
+  <mat-radio-button value="normal">Normal</mat-radio-button>
+  <mat-radio-button value="exponential">Negative Exponential</mat-radio-button>
+</mat-radio-group>
+
+<form *ngIf="typeGenerator" [formGroup]="formType" class="row">
+  <!--Uniform-->
+  <ng-container *ngIf="typeGenerator == 'uniform'">
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+      <mat-label>Lower limit</mat-label>
+      <input type="number" formControlName="lowerLimit" matInput>
+      <mat-error *ngIf="formType.controls['lowerLimit'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+      <mat-label>Upper limit</mat-label>
+      <input type="number" formControlName="upperLimit" matInput>
+      <mat-error *ngIf="formType.controls['upperLimit'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+  </ng-container>
+
+  <!--Normal-->
+  <ng-container *ngIf="typeGenerator == 'normal'">
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+      <mat-label>Half</mat-label>
+      <input type="number" formControlName="half" matInput>
+      <mat-error *ngIf="formType.controls['half'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+      <mat-label>Standard deviation</mat-label>
+      <input type="number" formControlName="standardDeviation" matInput>
+      <mat-error *ngIf="formType.controls['standardDeviation'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+  </ng-container>
+
+  <!--Exponential-->
+  <ng-container *ngIf="typeGenerator == 'exponential'">
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+      <mat-label>Half</mat-label>
+      <input type="number" formControlName="half" matInput>
+      <mat-error *ngIf="formType.controls['half'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+  </ng-container>
+
+  <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+    <mat-label>Intervals size</mat-label>
+    <input type="number" formControlName="intervalSize" matInput>
+    <mat-error *ngIf="formType.controls['intervalSize'].hasError('required')">The variable is required</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button [disabled]="formType.status != 'VALID'" (click)="generate()" >Generate</button>
+</form>

@@ -1,0 +1,6 @@
+.radio-buttons{
+  display: flex;
+  justify-content: space-around;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle {background-color: black;}
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{ border-color: black}

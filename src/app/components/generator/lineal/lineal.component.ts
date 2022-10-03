@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { LinealGenerator } from 'src/app/models/generators.model';
+import { ITypeGenerator } from 'src/app/models/type-generator.model';
+import { Output, EventEmitter } from '@angular/core';
 import { ModalTypeGeneratorComponent } from '../modal-type-generator/modal-type-generator.component';
 
 @Component({
@@ -11,6 +14,7 @@ import { ModalTypeGeneratorComponent } from '../modal-type-generator/modal-type-
 export class LinealComponent implements OnInit {
 
   formLineal: FormGroup;
+  @Output() generator = new EventEmitter<LinealGenerator>();
 
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog) {
     this.initForm()
@@ -29,28 +33,23 @@ export class LinealComponent implements OnInit {
     })
   }
 
-  getMultiplicativeConstant(): number{
-    let k = parseFloat(this.formLineal.controls['K'].value);
-    return 1 + (4*k);
-  }
-
-  getAditiveConstant(): number{
-    let c = parseFloat(this.formLineal.controls['C'].value);
-    return c;
-  }
-
-  getModulator(): number{
-    let g = parseFloat(this.formLineal.controls['G'].value);
-    return Math.pow(2, g);
-  }
-
   simulate(){
     const dialogRef = this.dialog.open(ModalTypeGeneratorComponent, {
       width: '60%',
     });
     dialogRef.afterClosed().subscribe(
-      (res) => {
+      (res: ITypeGenerator) => {
         if(res){
+          this.generator.emit(
+            new LinealGenerator(
+              this.formLineal.controls['ammount'].value,
+              this.formLineal.controls['seed'].value,
+              this.formLineal.controls['g'].value,
+              this.formLineal.controls['k'].value,
+              this.formLineal.controls['c'].value,
+              res
+            )
+          );
         }
       }
     )

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { LanguageGenerator } from 'src/app/models/generators.model';
+import { Output, EventEmitter } from '@angular/core';
+import { ITypeGenerator } from 'src/app/models/type-generator.model';
 import { ModalTypeGeneratorComponent } from '../modal-type-generator/modal-type-generator.component';
 
 @Component({
@@ -11,6 +14,8 @@ import { ModalTypeGeneratorComponent } from '../modal-type-generator/modal-type-
 export class JavascriptComponent implements OnInit {
 
   formJavascript: FormGroup;
+  @Output() generator = new EventEmitter<LanguageGenerator>();
+
   constructor(private _formBuilder: FormBuilder, public dialog: MatDialog) {
     this.initForm();
   }
@@ -29,8 +34,12 @@ export class JavascriptComponent implements OnInit {
       width: '60%',
     });
     dialogRef.afterClosed().subscribe(
-      (res) => {
+      (res: ITypeGenerator) => {
         if(res){
+          this.generator.emit(new LanguageGenerator(
+            this.formJavascript.controls['ammount'].value,
+            res
+          ));
         }
       }
     )

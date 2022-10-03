@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalTypeGeneratorComponent } from '../modal-type-generator/modal-type-generator.component';
 
 @Component({
   selector: 'app-javascript',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class JavascriptComponent implements OnInit {
 
-  constructor() { }
+  formJavascript: FormGroup;
+  constructor(private _formBuilder: FormBuilder, public dialog: MatDialog) {
+    this.initForm();
+  }
 
   ngOnInit(): void {
+  }
+
+  initForm(){
+    this.formJavascript = this._formBuilder.group({
+      ammount: ['', Validators.required],
+    })
+  }
+
+  simulate(){
+    const dialogRef = this.dialog.open(ModalTypeGeneratorComponent, {
+      width: '60%',
+    });
+    dialogRef.afterClosed().subscribe(
+      (res) => {
+        if(res){
+        }
+      }
+    )
   }
 
 }

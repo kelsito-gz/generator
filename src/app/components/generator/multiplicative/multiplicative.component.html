@@ -1,1 +1,31 @@
-<p>multiplicative works!</p>
+<mat-card>
+  <mat-label><span class="bold">Xo = Seed</span></mat-label>
+  <mat-label><span class="bold">Xi+1 = (ai * Xi)/(mod m)</span></mat-label><br>
+  <mat-label><span class="bold">ai = 1 + (4*K)</span></mat-label><br>
+  <mat-label><span class="bold">m = 2^G</span></mat-label><br>
+  <form name="formLineal" [formGroup]="formMultiplicative" class="row">
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+        <mat-label>Seed</mat-label>
+        <input type="number" formControlName="seed" matInput>
+        <mat-error *ngIf="formMultiplicative.controls['seed'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+        <mat-label>Var G</mat-label>
+        <input type="number" formControlName="g" matInput>
+        <mat-error *ngIf="formMultiplicative.controls['g'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+        <mat-label>Var K</mat-label>
+        <input type="number" formControlName="k" matInput>
+        <mat-error *ngIf="formMultiplicative.controls['k'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+        <mat-label>Amount of numbers</mat-label>
+        <input type="number" formControlName="ammount" matInput>
+        <mat-error *ngIf="formMultiplicative.controls['ammount'].hasError('required')">The variable is required</mat-error>
+    </mat-form-field>
+
+
+    <button mat-raised-button [disabled]="formMultiplicative.status != 'VALID'" (click)="simulate()">Simulate</button>
+  </form>
+</mat-card>

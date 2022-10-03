@@ -1,33 +1,35 @@
 <mat-card>
-    <form name="formLineal" [formGroup]="formLineal" class="row">
-        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-            <mat-label>Seed</mat-label>
-            <input type="text" formControlName="Seed" matInput>
-            <mat-error *ngIf="formLineal.controls['Seed'].hasError('required')">The variable is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-            <mat-label>Var G</mat-label>
-            <input type="text" formControlName="G" matInput>
-            <mat-error *ngIf="formLineal.controls['G'].hasError('required')">The variable is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-            <mat-label>Var K</mat-label>
-            <input type="text" formControlName="K" matInput>
-            <mat-error *ngIf="formLineal.controls['K'].hasError('required')">The variable is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-            <mat-label>Additive constant</mat-label>
-            <input type="text" formControlName="C" matInput>
-            <mat-error *ngIf="formLineal.controls['C'].hasError('required')">The variable is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-            <mat-label>Amount of numbers</mat-label>
-            <input type="text" formControlName="Ammount" matInput>
-            <mat-error *ngIf="formLineal.controls['Ammount'].hasError('required')">The variable is required</mat-error>
-        </mat-form-field>
-
-
-        <button mat-raised-button [disabled]="formLineal.status != 'VALID'" (click)="simulate()">Simulate</button>
-    </form>
+  <mat-label><span class="bold">Xo = Seed</span></mat-label>
+  <mat-label><span class="bold">Xi+1 = (ai * Xi + c)/(mod m)</span></mat-label><br>
+  <mat-label><span class="bold">ai = 1 + (4*K)</span></mat-label><br>
+  <mat-label><span class="bold">m = 2^G</span></mat-label><br>
+  <form name="formLineal" [formGroup]="formLineal" class="row">
+      <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+          <mat-label>Seed</mat-label>
+          <input type="number" formControlName="seed" matInput>
+          <mat-error *ngIf="formLineal.controls['seed'].hasError('required')">The variable is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+          <mat-label>Var G</mat-label>
+          <input type="number" formControlName="g" matInput>
+          <mat-error *ngIf="formLineal.controls['g'].hasError('required')">The variable is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+          <mat-label>Var K</mat-label>
+          <input type="number" formControlName="k" matInput>
+          <mat-error *ngIf="formLineal.controls['k'].hasError('required')">The variable is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+          <mat-label>Additive constant</mat-label>
+          <input type="number" formControlName="c" matInput>
+          <mat-error *ngIf="formLineal.controls['c'].hasError('required')">The variable is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+          <mat-label>Amount of numbers</mat-label>
+          <input type="number" formControlName="ammount" matInput>
+          <mat-error *ngIf="formLineal.controls['ammount'].hasError('required')">The variable is required</mat-error>
+      </mat-form-field>
+      <button mat-raised-button [disabled]="formLineal.status != 'VALID'" (click)="simulate()">Simulate</button>
+  </form>
 </mat-card>
 

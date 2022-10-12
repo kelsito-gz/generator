@@ -8,6 +8,8 @@ import { GeneratorComponent } from './generator.component';
 import { MaterialModule } from 'src/app/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalTypeGeneratorComponent } from './modal-type-generator/modal-type-generator.component';
+import { VisualizerComponent } from './visualizer/visualizer.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -16,12 +18,14 @@ import { ModalTypeGeneratorComponent } from './modal-type-generator/modal-type-g
     MultiplicativeComponent,
     JavascriptComponent,
     GeneratorComponent,
-    ModalTypeGeneratorComponent
+    ModalTypeGeneratorComponent,
+    VisualizerComponent
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    NgChartsModule,
     FormsModule,
   ],
   exports:[

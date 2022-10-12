@@ -2,6 +2,8 @@ export interface ITypeGenerator{
   intervalSize: number;
   firstVariable: number;
   secondVariable: number;
+
+  getData(): string;
 }
 
 export class UniformGenerator implements ITypeGenerator{
@@ -13,6 +15,10 @@ export class UniformGenerator implements ITypeGenerator{
     this.firstVariable = lowerLimit;
     this.secondVariable = upperLimit;
     this.intervalSize = intervalSize;
+  }
+
+  getData(): string{
+    return `Uniform: Interval Size: ${this.intervalSize}, Lower Limit: ${this.firstVariable}, Upper Limit: ${this.secondVariable}`;
   }
 }
 
@@ -26,6 +32,10 @@ export class NormalGenerator implements ITypeGenerator{
     this.secondVariable = deviation;
     this.intervalSize = intervalSize;
   }
+
+  getData(): string{
+    return `Normal: Interval Size: <${this.intervalSize}, Half: ${this.firstVariable}, Deviation: ${this.secondVariable}`;
+  }
 }
 
 export class NegativeExponentialGenerator implements ITypeGenerator{
@@ -36,5 +46,9 @@ export class NegativeExponentialGenerator implements ITypeGenerator{
   constructor(intervalSize: number, half: number){
     this.firstVariable = half;
     this.intervalSize = intervalSize;
+  }
+
+  getData(): string{
+    return `Negative Exponential: Interval Size: ${this.intervalSize}, Half: ${this.firstVariable}`;
   }
 }

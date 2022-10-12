@@ -3,6 +3,9 @@ import { ITypeGenerator } from "./type-generator.model";
 export interface IGenerator{
   typeGenerator: ITypeGenerator;
   ammountNumbers: number;
+
+  getData(): string;
+  nextNumber(): number;
 }
 
 export class LinealGenerator implements IGenerator {
@@ -20,6 +23,15 @@ export class LinealGenerator implements IGenerator {
     this.c = c;
     this.typeGenerator = typeGenerator;
   }
+
+  getData(){
+    let message: string = `Lineal Generator: X(i+1)=(${this.ai}* Xi + ${this.c})/(mod ${this.m}) | ${this.typeGenerator.getData()}`;
+    return message;
+  }
+
+  nextNumber(): number {
+    return 1
+  }
 }
 
 export class MultiplicativeGenerator implements IGenerator{
@@ -35,6 +47,14 @@ export class MultiplicativeGenerator implements IGenerator{
     this.m = Math.pow(2, g);
     this.typeGenerator = typeGenerator;
   }
+  getData(){
+    let message: string = `Multiplicative Generator: X(i+1)=(${this.ai}* Xi)/(mod ${this.m}) | ${this.typeGenerator.getData()}`;
+    return message;
+  }
+
+  nextNumber(): number {
+    return 1
+  }
 }
 
 export class LanguageGenerator implements IGenerator{
@@ -44,5 +64,13 @@ export class LanguageGenerator implements IGenerator{
   constructor(ammount: number, typeGenerator: ITypeGenerator){
     this.ammountNumbers = ammount;
     this.typeGenerator = typeGenerator;
+  }
+  getData(){
+    let message: string = `Language Generator: ${this.typeGenerator} | ${this.typeGenerator.getData()}`;
+    return message;
+  }
+
+  nextNumber(): number {
+    return 1
   }
 }

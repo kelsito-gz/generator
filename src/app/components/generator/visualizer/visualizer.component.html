@@ -1,0 +1,18 @@
+<mat-card>
+  <mat-card-header>
+    <img mat-card-avatar src="https://images.vexels.com/media/users/3/189702/isolated/lists/0909c4a72562b45eb247012f1606c4c6-icono-de-juguete-de-dados.png">
+    <mat-card-title>Generator {{generatorNumber + 1}}</mat-card-title>
+    <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-label class="number">{{number}}</mat-label>
+    <div align="end">
+      <button align="end" mat-button (click)="generateNumber()">Next</button>
+    </div>
+    <canvas baseChart width="400px" height="400px"
+    [datasets]="barChartData.datasets" [labels]="barChartData.labels" type="bar"></canvas>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="generateNumber()">Next</button>
+  </mat-card-actions>
+</mat-card>

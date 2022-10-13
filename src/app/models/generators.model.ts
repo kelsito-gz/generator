@@ -6,6 +6,7 @@ export interface IGenerator{
 
   getData(): string;
   nextNumber(): number;
+  getLabels(): string[];
 }
 
 export class LinealGenerator implements IGenerator {
@@ -30,7 +31,13 @@ export class LinealGenerator implements IGenerator {
   }
 
   nextNumber(): number {
-    return 1
+    let xi1 = ((this.ai * this.seed)+this.c)%this.m;
+    this.seed = xi1;
+    return xi1/(this.m);
+  }
+
+  getLabels(): string[] {
+    return this.typeGenerator.getLabels();
   }
 }
 
@@ -53,13 +60,21 @@ export class MultiplicativeGenerator implements IGenerator{
   }
 
   nextNumber(): number {
-    return 1
+    let xi1 = (this.ai * this.seed)%this.m;
+    this.seed = xi1;
+    return xi1/(this.m-1);
   }
+
+  getLabels(): string[] {
+    return this.typeGenerator.getLabels();
+  }
+
 }
 
 export class LanguageGenerator implements IGenerator{
   typeGenerator: ITypeGenerator;
   ammountNumbers: number;
+  random: Math;
 
   constructor(ammount: number, typeGenerator: ITypeGenerator){
     this.ammountNumbers = ammount;
@@ -71,6 +86,10 @@ export class LanguageGenerator implements IGenerator{
   }
 
   nextNumber(): number {
-    return 1
+    return this.random.random();
+  }
+
+  getLabels(): string[] {
+    return this.typeGenerator.getLabels();
   }
 }

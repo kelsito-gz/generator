@@ -1,54 +1,70 @@
 export interface ITypeGenerator{
-  intervalSize: number;
+  numberIntervals: number;
   firstVariable: number;
   secondVariable: number;
 
   getData(): string;
+  getLabels(): string[];
 }
 
 export class UniformGenerator implements ITypeGenerator{
   firstVariable: number;  //lowerLimit
   secondVariable: number;  //upperLimit
-  intervalSize: number;
+  numberIntervals: number;
 
-  constructor(intervalSize: number, lowerLimit: number, upperLimit: number){
+  constructor(numberIntervals: number, lowerLimit: number, upperLimit: number){
     this.firstVariable = lowerLimit;
     this.secondVariable = upperLimit;
-    this.intervalSize = intervalSize;
+    this.numberIntervals = numberIntervals;
   }
 
   getData(): string{
-    return `Uniform: Interval Size: ${this.intervalSize}, Lower Limit: ${this.firstVariable}, Upper Limit: ${this.secondVariable}`;
+    return `Uniform: Interval Size: ${this.numberIntervals}, Lower Limit: ${this.firstVariable}, Upper Limit: ${this.secondVariable}`;
   }
+  getLabels(): string[]{
+    let labels: string[] = [];
+    let intervalSize: number = (this.secondVariable - this.firstVariable)/this.numberIntervals;
+    for (let i = 0; i < this.numberIntervals; i++) {
+       labels.push(`[${(i*intervalSize).toFixed(2)},${(intervalSize*(i+1)).toFixed(2)})`)
+    }
+    return labels;
+  }
+
 }
 
 export class NormalGenerator implements ITypeGenerator{
   firstVariable: number;   //half
   secondVariable: number;  //standard deviation
-  intervalSize: number;
+  numberIntervals: number;
 
-  constructor(intervalSize: number, half: number, deviation: number){
+  constructor(numberIntervals: number, half: number, deviation: number){
     this.firstVariable = half;
     this.secondVariable = deviation;
-    this.intervalSize = intervalSize;
+    this.numberIntervals = numberIntervals;
   }
 
   getData(): string{
-    return `Normal: Interval Size: <${this.intervalSize}, Half: ${this.firstVariable}, Deviation: ${this.secondVariable}`;
+    return `Normal: Interval Size: <${this.numberIntervals}, Half: ${this.firstVariable}, Deviation: ${this.secondVariable}`;
+  }
+  getLabels(): string[]{
+    return [""]
   }
 }
 
 export class NegativeExponentialGenerator implements ITypeGenerator{
   firstVariable: number;  //half
   secondVariable: number; //null
-  intervalSize: number;
+  numberIntervals: number;
 
-  constructor(intervalSize: number, half: number){
+  constructor(numberIntervals: number, half: number){
     this.firstVariable = half;
-    this.intervalSize = intervalSize;
+    this.numberIntervals = numberIntervals;
   }
 
   getData(): string{
-    return `Negative Exponential: Interval Size: ${this.intervalSize}, Half: ${this.firstVariable}`;
+    return `Negative Exponential: Interval Size: ${this.numberIntervals}, Half: ${this.firstVariable}`;
+  }
+  getLabels(): string[]{
+    return [""]
   }
 }

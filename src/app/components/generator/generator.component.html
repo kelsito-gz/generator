@@ -44,6 +44,10 @@
             <mat-icon>add</mat-icon>
         </ng-template>
     </mat-horizontal-stepper>
+
+    <ng-container *ngIf="numbersGenerator.length">
+      <app-visualizer *ngFor="let generator of numbersGenerator; let i = index" [generator]="generator" [generatorNumber]="i"></app-visualizer>
+    </ng-container>
 </div>
 
 

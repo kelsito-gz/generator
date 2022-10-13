@@ -22,13 +22,13 @@ export class ModalTypeGeneratorComponent implements OnInit {
 
   initForm(){
     this.formType = this.formBuilder.group({
-      intervalSize: ['', Validators.required],
+      numberIntervals: ['', Validators.required],
     })
   }
 
   onChangeRadioGroup(event: any){
     this.formType = this.formBuilder.group({
-      intervalSize: ['', Validators.required],
+      numberIntervals: ['', Validators.required],
     })
     if(event.value){
       switch(event.value){
@@ -56,21 +56,21 @@ export class ModalTypeGeneratorComponent implements OnInit {
     switch(this.typeGenerator){
       case 'uniform':
         type = new UniformGenerator(
-          this.formType.controls['intervalSize'].value,
+          this.formType.controls['numberIntervals'].value,
           this.formType.controls['lowerLimit'].value,
           this.formType.controls['upperLimit'].value,
         );
         break;
       case 'normal':
         type = new NormalGenerator(
-          this.formType.controls['intervalSize'].value,
+          this.formType.controls['numberIntervals'].value,
           this.formType.controls['half'].value,
           this.formType.controls['standardDeviation'].value,
         );
         break;
       case 'exponential':
         type = new NegativeExponentialGenerator(
-          this.formType.controls['intervalSize'].value,
+          this.formType.controls['numberIntervals'].value,
           this.formType.controls['half'].value,
         );
         break;

@@ -1,0 +1,10 @@
+.mat-card{
+  margin-bottom: 50px;
+}
+
+.number{
+  font-size: 50px;
+  display: block;
+  text-align: center;
+  padding: 50px 0;
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LanguageGenerator, LinealGenerator, MultiplicativeGenerator } from 'src/app/models/generators.model';
+import { UniformGenerator } from 'src/app/models/type-generator.model';
 
 @Component({
   selector: 'app-generator',
@@ -8,13 +9,16 @@ import { LanguageGenerator, LinealGenerator, MultiplicativeGenerator } from 'src
 })
 export class GeneratorComponent implements OnInit {
 
-  constructor() { }
+  numbersGenerator: any[] = [];
+  constructor() {
+    this.numbersGenerator.push(new LinealGenerator(12, 6, 3, 3, 7, new UniformGenerator(12, 0, 1)));
+  }
 
   ngOnInit(): void {
   }
 
   generate(generator: LinealGenerator | LanguageGenerator | MultiplicativeGenerator){
-    console.log(generator);
+    this.numbersGenerator.push(generator);
   }
 
 }

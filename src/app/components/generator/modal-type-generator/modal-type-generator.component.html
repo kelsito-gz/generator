@@ -43,9 +43,9 @@
   </ng-container>
 
   <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-    <mat-label>Intervals size</mat-label>
-    <input type="number" formControlName="intervalSize" matInput>
-    <mat-error *ngIf="formType.controls['intervalSize'].hasError('required')">The variable is required</mat-error>
+    <mat-label>Number of intervals</mat-label>
+    <input type="number" formControlName="numberIntervals" matInput>
+    <mat-error *ngIf="formType.controls['numberIntervals'].hasError('required')">The variable is required</mat-error>
   </mat-form-field>
 
   <button mat-raised-button [disabled]="formType.status != 'VALID'" (click)="generate()" >Generate</button>

@@ -1,0 +1,20 @@
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+}
+.modal-header{
+  background-color: #484858;
+  color: white;
+  font-size: 16px;
+}
+.modal-actions button{
+  padding: 5px 15px;
+  margin: 20px;
+  border-radius: 15px;
+  border: 2px solid;
+}
+.modal-actions button:nth-child(1){
+  border-color: #099b01;
+}
+.modal-actions button:nth-child(2){
+  border-color: #f44336;
+}

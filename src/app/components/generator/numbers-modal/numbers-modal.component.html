@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <div class="col-xs-9">
+    {{tittle}}
+  </div>
+  <div class="col-xs-3">
+    <button mat-button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="close()"></button>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="col-xs-12">
+    {{message}}
+  </div>
+  <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
+    <mat-label>Seed</mat-label>
+    <input type="number" [formControl]="formNumber" matInput>
+    <mat-error>The variable is required</mat-error>
+</mat-form-field>
+
+  <div align="end" class="modal-actions">
+    <button mat-button (click)="acceptModal()">{{accept}}</button>
+    <button mat-button (click)="cancelModal()">{{cancel}}</button>
+  </div>

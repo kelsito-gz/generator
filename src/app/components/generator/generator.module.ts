@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalTypeGeneratorComponent } from './modal-type-generator/modal-type-generator.component';
 import { VisualizerComponent } from './visualizer/visualizer.component';
 import { NgChartsModule } from 'ng2-charts';
+import { NumbersModalComponent } from './numbers-modal/numbers-modal.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { NgChartsModule } from 'ng2-charts';
     JavascriptComponent,
     GeneratorComponent,
     ModalTypeGeneratorComponent,
-    VisualizerComponent
+    VisualizerComponent,
+    NumbersModalComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +32,8 @@ import { NgChartsModule } from 'ng2-charts';
   ],
   exports:[
     GeneratorComponent,
+  ], entryComponents: [
+    NumbersModalComponent
   ]
 })
 export class GeneratorModule { }

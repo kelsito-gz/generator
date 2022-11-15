@@ -5,7 +5,7 @@ export interface IGenerator{
   ammountNumbers: number;
 
   getData(): string;
-  nextNumber(): number;
+  nextNumber(): number | number[];
   getLabels(): string[];
 }
 
@@ -30,10 +30,18 @@ export class LinealGenerator implements IGenerator {
     return message;
   }
 
-  nextNumber(): number {
+  nextNumber(): number | number[] {
     let xi1 = ((this.ai * this.seed)+this.c)%this.m;
     this.seed = xi1;
-    return xi1/(this.m);
+    let random = xi1/(this.m);
+    if(this.typeGenerator.isNormal()){
+      xi1 = ((this.ai * this.seed)+this.c)%this.m;
+      this.seed = xi1;
+      let random2 = xi1/(this.m);
+      return this.typeGenerator.getNumberDistribution(random, random2)
+    } else {
+      return this.typeGenerator.getNumberDistribution(random);
+    }
   }
 
   getLabels(): string[] {
@@ -59,10 +67,18 @@ export class MultiplicativeGenerator implements IGenerator{
     return message;
   }
 
-  nextNumber(): number {
+  nextNumber(): number | number[] {
     let xi1 = (this.ai * this.seed)%this.m;
     this.seed = xi1;
-    return xi1/(this.m-1);
+    let random = xi1/(this.m-1);
+    if(this.typeGenerator.isNormal()){
+      xi1 = (this.ai * this.seed)%this.m;
+      this.seed = xi1;
+      let random2 = xi1/(this.m);
+      return this.typeGenerator.getNumberDistribution(random, random2)
+    } else {
+      return this.typeGenerator.getNumberDistribution(random);
+    }
   }
 
   getLabels(): string[] {
@@ -79,14 +95,21 @@ export class LanguageGenerator implements IGenerator{
   constructor(ammount: number, typeGenerator: ITypeGenerator){
     this.ammountNumbers = ammount;
     this.typeGenerator = typeGenerator;
+    this.random = Math;
   }
   getData(){
-    let message: string = `Language Generator: ${this.typeGenerator} | ${this.typeGenerator.getData()}`;
+    let message: string = `Language Generator: with the clock | ${this.typeGenerator.getData()}`;
     return message;
   }
 
-  nextNumber(): number {
-    return this.random.random();
+  nextNumber(): number | number[] {
+    let random = this.random.random();
+    if(this.typeGenerator.isNormal()){
+      let random2 = this.random.random();
+      return this.typeGenerator.getNumberDistribution(random, random2)
+    } else {
+      return this.typeGenerator.getNumberDistribution(random);
+    }
   }
 
   getLabels(): string[] {

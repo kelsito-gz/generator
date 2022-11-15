@@ -1,7 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {  } from '@angular/common';
 import { LanguageGenerator, LinealGenerator, MultiplicativeGenerator } from 'src/app/models/generators.model';
-import { ChartData } from 'chart.js';
+import { ChartData, ChartOptions } from 'chart.js';
+import { MatDialog } from '@angular/material/dialog';
+import { NumbersModalComponent } from '../numbers-modal/numbers-modal.component';
 
 @Component({
   selector: 'app-visualizer',
@@ -13,11 +15,12 @@ export class VisualizerComponent implements OnInit {
   @Input() generator: LinealGenerator | LanguageGenerator | MultiplicativeGenerator;
   @Input() generatorNumber: number;
   subtitle: string;
-  number: number;
+  number: number | number[];
+  chartOptions: ChartOptions;
 
   barChartData: ChartData<'bar'>
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initChart();
@@ -30,8 +33,12 @@ export class VisualizerComponent implements OnInit {
       datasets: [{
         data: Array(this.generator.typeGenerator.numberIntervals).fill(0),
         label: `Serie ${this.generatorNumber +1}.`
-      }]
+      }],
     };
+    this.chartOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+  }
   }
 
   generateNumber(){
@@ -39,10 +46,42 @@ export class VisualizerComponent implements OnInit {
     this.addNumberToGraphic(this.number);
   }
 
-  addNumberToGraphic(newNumber: number){
+  generateNumbers(){
+    const dialogRef = this.dialog.open(NumbersModalComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {
+        tittle: 'Tittle',
+        message: 'Are you sure you want it',
+        accept: 'Accept',
+        cancel: 'Cancel'
+      },
+      autoFocus: false
+    });
+    dialogRef.afterClosed().subscribe((res: number) => {
+      if(res){
+        for (let i = 0; i < res; i++) {
+          this.generateNumber();
+        }
+      }
+    })
+  }
+
+  addNumberToGraphic(newNumber: number | number[]){
     let dataset = this.barChartData.datasets[0].data.slice();
-    dataset[this.getNumberLabel(newNumber)] += 1;
-    this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
+    if(this.generator.typeGenerator.isNormal()){
+      (newNumber as number[]).forEach(x => {
+        dataset[this.getNumberLabel(x as number)] += 1;
+        this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
+      })
+    } else{
+      dataset[this.getNumberLabel(newNumber as number)] += 1;
+      this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
+    }
+  }
+
+  getListNumber(): number[]{
+    return this.number as number[]
   }
 
   private getNumberLabel(newNumber: number): number{

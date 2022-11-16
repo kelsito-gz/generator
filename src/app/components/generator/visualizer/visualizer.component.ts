@@ -81,7 +81,13 @@ export class VisualizerComponent implements OnInit {
         let limitsString: string = array[i].slice(1);
         limitsString = limitsString.slice(0, limitsString.length-1)
         const limits: string[] = limitsString.split(',');
-        if(newNumber >= parseFloat(limits[0]) && newNumber < parseFloat(limits[1]) ){
+        if(newNumber >= parseFloat(limits[0]) && newNumber < parseFloat(limits[1])){
+          return i;
+        }
+        if(i == 0 && newNumber < parseFloat(limits[1]) && limits[0] == "∞"){
+          return i;
+        }
+        if(i == array.length-1 && newNumber >= parseFloat(limits[0]) && limits[1] == "∞"){
           return i;
         }
       }

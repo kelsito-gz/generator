@@ -59,11 +59,12 @@ export class NormalGenerator implements ITypeGenerator{
   getLabels(): string[]{
     let labels: string[] = [];
     let intervalSize: number = (this.deviation * 6) / (this.numberIntervals - 2); //Here it is 99.73 % of the numbers;
-    labels.push(`(∞, ${this.half - (this.deviation * 2)})`);
+    let firstAmmount = this.half - (this.deviation * 2 + intervalSize);
+    labels.push(`(∞, ${firstAmmount})`);
     for (let i = 0; i < this.numberIntervals-2; i++) {
-      labels.push(`[${this.half - (this.deviation * 6) + (i+2) * intervalSize}, ${this.half - (this.deviation * 6) + (i+3) * intervalSize})`)
+      labels.push(`[${firstAmmount + (intervalSize * i)}, ${firstAmmount + (intervalSize*(i+1))})`);
     }
-    labels.push(`(${this.half + (this.deviation * 2)}, ∞)`)
+    labels.push(`[${this.half + (this.deviation * 3)}, ∞)`)
     return labels;
   }
 

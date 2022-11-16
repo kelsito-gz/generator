@@ -5,10 +5,7 @@
     <mat-card-subtitle>{{subtitle}}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <mat-label class="number" *ngIf="!generator.typeGenerator.isNormal()">{{number}}</mat-label>
-    <div *ngIf="generator.typeGenerator.isNormal()">
-      <mat-label class="number" *ngFor="let num of getListNumber()">{{num}}</mat-label>
-    </div>
+    <mat-label class="number">{{number}}</mat-label>
     <div align="end">
       <button align="end" mat-button (click)="generateNumber()">Next</button>
       <button align="end" mat-button (click)="generateNumbers()">Next n</button>

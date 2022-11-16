@@ -59,18 +59,21 @@ export class NormalGenerator implements ITypeGenerator{
   getLabels(): string[]{
     let labels: string[] = [];
     let intervalSize: number = (this.deviation * 6) / (this.numberIntervals - 2); //Here it is 99.73 % of the numbers;
-    labels.push(`(∞, ${this.half - (this.deviation * 3)})`);
+    labels.push(`(∞, ${this.half - (this.deviation * 2)})`);
     for (let i = 0; i < this.numberIntervals-2; i++) {
       labels.push(`[${this.half - (this.deviation * 6) + (i+2) * intervalSize}, ${this.half - (this.deviation * 6) + (i+3) * intervalSize})`)
     }
-    labels.push(`(${this.half + (this.deviation * 3)}, ∞)`)
+    labels.push(`(${this.half + (this.deviation * 2)}, ∞)`)
     return labels;
   }
 
   getNumberDistribution(num: number, num2: number): number[]{
     let normal: number[] = [];
-    normal.push(Math.sqrt(-2*this.truncatetofive(Math.log(num)))*this.truncatetofive(Math.sin(Math.PI*2*num2)) * this.deviation) + this.half;
-    normal.push(Math.sqrt(-2*this.truncatetofive(Math.log(num)))*this.truncatetofive(Math.cos(Math.PI*2*num2)) * this.deviation) + this.half;
+    let sqrt = this.truncatetofive(Math.sqrt((-2*this.truncatetofive(Math.log(num)))));
+    let sin = this.truncatetofive(Math.sin(Math.PI*2*num2));
+    let cos = this.truncatetofive(Math.cos(Math.PI*2*num2));
+    normal.push(sqrt*sin * this.deviation + this.half );
+    normal.push(sqrt*cos * this.deviation + this.half );
     return normal;
   }
 

@@ -5,7 +5,7 @@ export interface IGenerator{
   ammountNumbers: number;
 
   getData(): string;
-  nextNumber(): number | number[];
+  nextNumber(): number;
   getLabels(): string[];
 }
 
@@ -16,6 +16,9 @@ export class LinealGenerator implements IGenerator {
   c: number;
   ai: number;
   m: number;
+  nextNumberNormal: number;
+  hasNumberOld: boolean = false;
+
   constructor(ammount: number, seed: number, g: number, k: number, c: number, typeGenerator: ITypeGenerator){
     this.ammountNumbers = ammount;
     this.seed = seed;
@@ -30,7 +33,13 @@ export class LinealGenerator implements IGenerator {
     return message;
   }
 
-  nextNumber(): number | number[] {
+  nextNumber(): number{
+    if(this.hasNumberOld){
+      //We dont have to generate a number if we have one of before, cause this modify the distribution
+      let number = this.nextNumberNormal;
+      this.hasNumberOld = false;
+      return number;
+    }
     let xi1 = ((this.ai * this.seed)+this.c)%this.m;
     this.seed = xi1;
     let random = xi1/(this.m);
@@ -38,9 +47,12 @@ export class LinealGenerator implements IGenerator {
       xi1 = ((this.ai * this.seed)+this.c)%this.m;
       this.seed = xi1;
       let random2 = xi1/(this.m);
-      return this.typeGenerator.getNumberDistribution(random, random2)
+      let numbersNormals: number[] = this.typeGenerator.getNumberDistribution(random, random2) as number[];
+      this.nextNumberNormal = numbersNormals[1];
+      this.hasNumberOld = true;
+      return numbersNormals[0];
     } else {
-      return this.typeGenerator.getNumberDistribution(random);
+      return this.typeGenerator.getNumberDistribution(random) as number;
     }
   }
 
@@ -55,6 +67,9 @@ export class MultiplicativeGenerator implements IGenerator{
   seed: number;
   ai: number;
   m: number;
+  nextNumberNormal: number;
+  hasNumberOld: boolean = false;
+
   constructor(ammount: number, seed: number, g: number, k: number, typeGenerator: ITypeGenerator){
     this.ammountNumbers = ammount;
     this.seed = seed;
@@ -67,7 +82,14 @@ export class MultiplicativeGenerator implements IGenerator{
     return message;
   }
 
-  nextNumber(): number | number[] {
+  nextNumber(): number{
+    if(this.hasNumberOld){
+      //This is because we can he have 0 as a random generated
+      //We dont have to generate a number if we have one of before, cause this modify the distribution
+      let number = this.nextNumberNormal;
+      this.hasNumberOld = false;
+      return number;
+    }
     let xi1 = (this.ai * this.seed)%this.m;
     this.seed = xi1;
     let random = xi1/(this.m-1);
@@ -75,9 +97,12 @@ export class MultiplicativeGenerator implements IGenerator{
       xi1 = (this.ai * this.seed)%this.m;
       this.seed = xi1;
       let random2 = xi1/(this.m);
-      return this.typeGenerator.getNumberDistribution(random, random2)
+      let numbersNormals: number[] = this.typeGenerator.getNumberDistribution(random, random2) as number[];
+      this.nextNumberNormal = numbersNormals[1];
+      this.hasNumberOld = true;
+      return numbersNormals[0];
     } else {
-      return this.typeGenerator.getNumberDistribution(random);
+      return this.typeGenerator.getNumberDistribution(random) as number;
     }
   }
 
@@ -91,6 +116,8 @@ export class LanguageGenerator implements IGenerator{
   typeGenerator: ITypeGenerator;
   ammountNumbers: number;
   random: Math;
+  nextNumberNormal: number;
+  hasNumberOld: boolean = false;
 
   constructor(ammount: number, typeGenerator: ITypeGenerator){
     this.ammountNumbers = ammount;
@@ -102,13 +129,22 @@ export class LanguageGenerator implements IGenerator{
     return message;
   }
 
-  nextNumber(): number | number[] {
+  nextNumber(): number{
+    if(this.hasNumberOld){
+      //We dont have to generate a number if we have one of before, cause this modify the distribution
+      let number = this.nextNumberNormal;
+      this.hasNumberOld = false;
+      return number;
+    }
     let random = this.random.random();
     if(this.typeGenerator.isNormal()){
       let random2 = this.random.random();
-      return this.typeGenerator.getNumberDistribution(random, random2)
+      let numbersNormals: number[] = this.typeGenerator.getNumberDistribution(random, random2) as number[];
+      this.nextNumberNormal = numbersNormals[1];
+      this.hasNumberOld = true;
+      return numbersNormals[0];
     } else {
-      return this.typeGenerator.getNumberDistribution(random);
+      return this.typeGenerator.getNumberDistribution(random) as number;
     }
   }
 

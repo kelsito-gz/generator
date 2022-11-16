@@ -15,7 +15,7 @@ export class VisualizerComponent implements OnInit {
   @Input() generator: LinealGenerator | LanguageGenerator | MultiplicativeGenerator;
   @Input() generatorNumber: number;
   subtitle: string;
-  number: number | number[];
+  number: number;
   chartOptions: ChartOptions;
 
   barChartData: ChartData<'bar'>
@@ -67,23 +67,13 @@ export class VisualizerComponent implements OnInit {
     })
   }
 
-  addNumberToGraphic(newNumber: number | number[]){
+  addNumberToGraphic(newNumber: number){
     let dataset = this.barChartData.datasets[0].data.slice();
-    if(this.generator.typeGenerator.isNormal()){
-      (newNumber as number[]).forEach(x => {
-        dataset[this.getNumberLabel(x as number)] += 1;
-        this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
-      })
-    } else{
-      dataset[this.getNumberLabel(newNumber as number)] += 1;
-      this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
-    }
+    dataset[this.getNumberLabel(newNumber as number)] += 1;
+    this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
   }
 
-  getListNumber(): number[]{
-    return this.number as number[]
-  }
-
+  //This method find the position of the new number in the grapich
   private getNumberLabel(newNumber: number): number{
     let array: string[] = this.barChartData.labels as string[];
     if(array){

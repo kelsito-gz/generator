@@ -26,7 +26,7 @@ export class UniformGenerator implements ITypeGenerator{
     let labels: string[] = [];
     let intervalSize: number = (this.upperLimit - this.lowerLimit)/this.numberIntervals;
     for (let i = 0; i < this.numberIntervals; i++) {
-       labels.push(`[${(i*intervalSize+this.lowerLimit).toFixed(2)},${(intervalSize*(i+1)+this.lowerLimit).toFixed(2)})`)
+       labels.push(`[${i*intervalSize+this.lowerLimit},${intervalSize*(i+1)+this.lowerLimit})`)
     }
     return labels;
   }

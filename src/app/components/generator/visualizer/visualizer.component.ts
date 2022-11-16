@@ -29,7 +29,7 @@ export class VisualizerComponent implements OnInit {
 
   private initChart(): void{
     this.barChartData = {
-      labels: this.generator.getLabels(),
+      labels: this.truncateLabels(this.generator.getLabels()),
       datasets: [{
         data: Array(this.generator.typeGenerator.numberIntervals).fill(0),
         label: `Serie ${this.generatorNumber +1}.`
@@ -39,6 +39,18 @@ export class VisualizerComponent implements OnInit {
       responsive: true,
       maintainAspectRatio: false,
   }
+  }
+
+  private truncateLabels(labels: string[]): string[]{
+    let labelNormal: string[] = [];
+    let numbersOfDecimals = 2;
+    labels.forEach(x => {
+      let coma: string[] = x.split(",");
+      let lowerLimit: string = coma[0].includes("∞") ? "∞" : (parseFloat(coma[0].substring(1))).toFixed(numbersOfDecimals).toString();
+      let upperLimit: string = coma[1].includes("∞") ? "∞" : (parseFloat(coma[1].substring(0, coma[1].length - 1))).toFixed(numbersOfDecimals).toString();
+      labelNormal.push(`${coma[0].charAt(0)}${lowerLimit},${upperLimit}${coma[1].charAt(coma[1].length -1)}`);
+    })
+    return labelNormal;
   }
 
   generateNumber(){

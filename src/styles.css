@@ -37,3 +37,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*Tablas */
+.mat-cell{
+  text-align: center;
+}
+.mat-header-cell{
+  background-color: #666666;
+  color: white;
+}

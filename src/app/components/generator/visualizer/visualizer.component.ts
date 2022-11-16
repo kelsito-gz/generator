@@ -18,7 +18,10 @@ export class VisualizerComponent implements OnInit {
   number: number;
   chartOptions: ChartOptions;
 
-  barChartData: ChartData<'bar'>
+  barChartData: ChartData<'bar'>;
+
+  displayedColumns = ["interval", "ammount"];
+  labels: string[] = [];
 
   constructor(private dialog: MatDialog) { }
 
@@ -28,8 +31,9 @@ export class VisualizerComponent implements OnInit {
   }
 
   private initChart(): void{
+    this.labels = this.truncateLabels(this.generator.getLabels())
     this.barChartData = {
-      labels: this.truncateLabels(this.generator.getLabels()),
+      labels: this.labels,
       datasets: [{
         data: Array(this.generator.typeGenerator.numberIntervals).fill(0),
         label: `Serie ${this.generatorNumber +1}.`

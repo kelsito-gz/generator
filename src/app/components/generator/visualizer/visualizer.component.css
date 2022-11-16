@@ -8,3 +8,14 @@
   text-align: center;
   padding: 50px 0;
 }
+
+.inline{
+  display: inline-block;
+}
+
+.mat-column-interval{
+  width: 50%;
+}
+.mat-column-ammount{
+  width: 50%;
+}

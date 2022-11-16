@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatCardModule,
     MatButtonModule,
     MatRadioModule,
+    MatTableModule,
     MatDialogModule,
   ],
   exports: [
@@ -30,6 +32,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatFormFieldModule,
     MatRadioModule,
     MatButtonModule,
+    MatTableModule,
     MatCardModule,
     MatDialogModule,
   ]

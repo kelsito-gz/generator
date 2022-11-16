@@ -102,9 +102,17 @@ export class NegativeExponentialGenerator implements ITypeGenerator{
 
   getLabels(): string[]{
     let labels: string[] = [];
-    for (let i = 0; i < this.numberIntervals; i++) {
-      labels.push(`[${i*this.half*this.numberIntervals/100},${(i+1)*this.half*this.numberIntervals/100})`);
+    //Density function:
+    //P(0<=X<=x)=1-e^(-half*x) => X = 0.9973 == 99.73%
+    //1 - 0.9973 = e^(-half*x)
+    //ln(0.0027) = -half * x
+    //ln(0.0027)/-half = x => x = upperLimit in the intervals thats gonna be show
+    let maxLimit = Math.log(0.0027)/-this.half;
+    let intervalSize = maxLimit / (this.numberIntervals - 1);
+    for (let i = 0; i < this.numberIntervals-1; i++) {
+      labels.push(`[${intervalSize*(i)},${intervalSize*(i+1)})`);
     }
+    labels.push(`[${maxLimit},∞)`)
     return labels;
   }
 

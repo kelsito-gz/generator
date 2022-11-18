@@ -74,8 +74,8 @@ export class VisualizerComponent implements OnInit {
       height: 'auto',
       width: 'auto',
       data: {
-        tittle: 'Tittle',
-        message: 'Are you sure you want it',
+        tittle: 'Generate Many numbers',
+        message: 'How many numbers do you want to generate?',
         accept: 'Accept',
         cancel: 'Cancel'
       },

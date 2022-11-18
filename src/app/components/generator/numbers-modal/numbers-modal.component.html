@@ -7,16 +7,16 @@
   </div>
 </div>
 <div class="modal-body">
-  <div class="col-xs-12">
+  <div class="col-xs-12" *ngIf="message">
     {{message}}
   </div>
-  <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-    <mat-label>Seed</mat-label>
+  <mat-form-field appearance="fill" class="col-xs-12">
+    <mat-label>Amount</mat-label>
     <input type="number" [formControl]="formNumber" matInput>
     <mat-error>The variable is required</mat-error>
 </mat-form-field>
 
   <div align="end" class="modal-actions">
-    <button mat-button (click)="acceptModal()">{{accept}}</button>
+    <button mat-button [disabled]="!formNumber.value" (click)="acceptModal()">{{accept}}</button>
     <button mat-button (click)="cancelModal()">{{cancel}}</button>
   </div>

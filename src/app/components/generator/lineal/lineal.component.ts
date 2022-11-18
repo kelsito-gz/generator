@@ -28,7 +28,6 @@ export class LinealComponent implements OnInit {
       seed: ['', [Validators.required]],
       k: ['', Validators.required],
       g: ['', Validators.required],
-      ammount: ['', Validators.required],
       c: ['', Validators.required]
     })
   }
@@ -42,7 +41,6 @@ export class LinealComponent implements OnInit {
         if(res){
           this.generator.emit(
             new LinealGenerator(
-              this.formLineal.controls['ammount'].value,
               this.formLineal.controls['seed'].value,
               this.formLineal.controls['g'].value,
               this.formLineal.controls['k'].value,

@@ -2,7 +2,6 @@ import { ITypeGenerator } from "./type-generator.model";
 
 export interface IGenerator{
   typeGenerator: ITypeGenerator;
-  ammountNumbers: number;
 
   getData(): string;
   nextNumber(): number;
@@ -11,7 +10,6 @@ export interface IGenerator{
 
 export class LinealGenerator implements IGenerator {
   typeGenerator: ITypeGenerator;
-  ammountNumbers: number;
   seed: number;
   c: number;
   ai: number;
@@ -19,8 +17,7 @@ export class LinealGenerator implements IGenerator {
   nextNumberNormal: number;
   hasNumberOld: boolean = false;
 
-  constructor(ammount: number, seed: number, g: number, k: number, c: number, typeGenerator: ITypeGenerator){
-    this.ammountNumbers = ammount;
+  constructor(seed: number, g: number, k: number, c: number, typeGenerator: ITypeGenerator){
     this.seed = seed;
     this.ai = 1 + (4*k);
     this.m = Math.pow(2, g);
@@ -63,15 +60,13 @@ export class LinealGenerator implements IGenerator {
 
 export class MultiplicativeGenerator implements IGenerator{
   typeGenerator: ITypeGenerator;
-  ammountNumbers: number;
   seed: number;
   ai: number;
   m: number;
   nextNumberNormal: number;
   hasNumberOld: boolean = false;
 
-  constructor(ammount: number, seed: number, g: number, k: number, typeGenerator: ITypeGenerator){
-    this.ammountNumbers = ammount;
+  constructor(seed: number, g: number, k: number, typeGenerator: ITypeGenerator){
     this.seed = seed;
     this.ai = 1 + (4*k);
     this.m = Math.pow(2, g);
@@ -114,13 +109,11 @@ export class MultiplicativeGenerator implements IGenerator{
 
 export class LanguageGenerator implements IGenerator{
   typeGenerator: ITypeGenerator;
-  ammountNumbers: number;
   random: Math;
   nextNumberNormal: number;
   hasNumberOld: boolean = false;
 
-  constructor(ammount: number, typeGenerator: ITypeGenerator){
-    this.ammountNumbers = ammount;
+  constructor(typeGenerator: ITypeGenerator){
     this.typeGenerator = typeGenerator;
     this.random = Math;
   }

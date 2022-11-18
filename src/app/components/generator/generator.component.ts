@@ -11,9 +11,9 @@ export class GeneratorComponent implements OnInit {
 
   numbersGenerator: any[] = [];
   constructor() {
-    this.numbersGenerator.push(new LanguageGenerator(0, new UniformGenerator(8, 3, 5)));
-    this.numbersGenerator.push(new LanguageGenerator(0, new NegativeExponentialGenerator(8, 3)));
-    this.numbersGenerator.push(new LanguageGenerator(0, new NormalGenerator(8, 3, 5)));
+    this.numbersGenerator.push(new LanguageGenerator(new UniformGenerator(8, 3, 5)));
+    this.numbersGenerator.push(new LanguageGenerator(new NegativeExponentialGenerator(8, 3)));
+    this.numbersGenerator.push(new LanguageGenerator(new NormalGenerator(8, 3, 5)));
   }
 
   ngOnInit(): void {

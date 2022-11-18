@@ -29,7 +29,6 @@ export class MultiplicativeComponent implements OnInit {
       seed: ['', [Validators.required]],
       k: ['', Validators.required],
       g: ['', Validators.required],
-      ammount: ['', Validators.required],
     })
   }
 
@@ -42,7 +41,6 @@ export class MultiplicativeComponent implements OnInit {
         if(res){
           this.generator.emit(
             new MultiplicativeGenerator(
-              this.formMultiplicative.controls['ammount'].value,
               this.formMultiplicative.controls['seed'].value,
               this.formMultiplicative.controls['g'].value,
               this.formMultiplicative.controls['k'].value,

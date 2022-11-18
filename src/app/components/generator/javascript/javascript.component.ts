@@ -25,7 +25,6 @@ export class JavascriptComponent implements OnInit {
 
   initForm(){
     this.formJavascript = this._formBuilder.group({
-      ammount: ['', Validators.required],
     })
   }
 
@@ -37,7 +36,6 @@ export class JavascriptComponent implements OnInit {
       (res: ITypeGenerator) => {
         if(res){
           this.generator.emit(new LanguageGenerator(
-            this.formJavascript.controls['ammount'].value,
             res
           ));
         }

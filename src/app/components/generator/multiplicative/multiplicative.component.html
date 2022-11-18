@@ -19,11 +19,6 @@
         <input type="number" formControlName="k" matInput>
         <mat-error *ngIf="formMultiplicative.controls['k'].hasError('required')">The variable is required</mat-error>
     </mat-form-field>
-    <mat-form-field appearance="fill" class="col-md-6 col-xs-12">
-        <mat-label>Amount of numbers</mat-label>
-        <input type="number" formControlName="ammount" matInput>
-        <mat-error *ngIf="formMultiplicative.controls['ammount'].hasError('required')">The variable is required</mat-error>
-    </mat-form-field>
 
 
     <button mat-raised-button [disabled]="formMultiplicative.status != 'VALID'" (click)="simulate()">Simulate</button>

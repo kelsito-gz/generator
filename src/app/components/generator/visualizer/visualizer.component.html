@@ -6,7 +6,7 @@
   </mat-card-header>
   <mat-card-content>
     <mat-label class="number">{{number}}</mat-label>
-    <div style="width: 900px; height: 400px;" class="col-xs-12 col-md-10 inline">
+    <div style="width: 70%; height: 400px;" class="col-xs-12 col-md-10 inline">
       <canvas
       baseChart
       [datasets]="barChartData.datasets"
@@ -19,12 +19,24 @@
     <div class="col-xs-12 col-md-2 inline table-ammounts">
       <table mat-table [dataSource]="barChartData.datasets[0].data">
         <ng-container matColumnDef="interval">
-          <th mat-header-cell *matHeaderCellDef > Interval </th>
+          <th mat-header-cell *matHeaderCellDef> Interval </th>
           <td mat-cell *matCellDef="let i = index"> {{ labels[i] }} </td>
         </ng-container>
         <ng-container matColumnDef="ammount">
           <th mat-header-cell *matHeaderCellDef> Ammount </th>
-          <td mat-cell *matCellDef="let element"> {{element}}</td>
+          <td mat-cell *matCellDef="let element"> {{element | number:'1.2-2'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="expected">
+          <th mat-header-cell *matHeaderCellDef> Expected </th>
+          <td mat-cell *matCellDef="let i = index"> {{expectedAmount[i] | number:'1.2-2'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="error">
+          <th mat-header-cell *matHeaderCellDef> Error </th>
+          <td mat-cell *matCellDef="let i = index; let element"> {{ Math.abs(element - expectedAmount[i]) | number:'1.2-2'}}</td>
+        </ng-container>
+        <ng-container matColumnDef="error-percentage">
+          <th mat-header-cell *matHeaderCellDef> Error Percentage</th>
+          <td mat-cell *matCellDef="let i = index; let element"> {{ (Math.abs(element - expectedAmount[i]) ?  (Math.abs(element - expectedAmount[i]) / totalGenerated )*100 : 0) | number:'1.2-2'}}%</td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

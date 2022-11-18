@@ -6,6 +6,7 @@ export interface IGenerator{
   getData(): string;
   nextNumber(): number;
   getLabels(): string[];
+  getExpectedFrecuency(totalAmount: number): number[];
 }
 
 export class LinealGenerator implements IGenerator {
@@ -56,6 +57,10 @@ export class LinealGenerator implements IGenerator {
   getLabels(): string[] {
     return this.typeGenerator.getLabels();
   }
+
+  getExpectedFrecuency(totalAmount: number): number[]{
+    return this.typeGenerator.getExpectedFrecuency(totalAmount);
+  }
 }
 
 export class MultiplicativeGenerator implements IGenerator{
@@ -105,6 +110,10 @@ export class MultiplicativeGenerator implements IGenerator{
     return this.typeGenerator.getLabels();
   }
 
+  getExpectedFrecuency(totalAmount: number): number[]{
+    return this.typeGenerator.getExpectedFrecuency(totalAmount);
+  }
+
 }
 
 export class LanguageGenerator implements IGenerator{
@@ -143,5 +152,9 @@ export class LanguageGenerator implements IGenerator{
 
   getLabels(): string[] {
     return this.typeGenerator.getLabels();
+  }
+
+  getExpectedFrecuency(totalAmount: number): number[]{
+    return this.typeGenerator.getExpectedFrecuency(totalAmount);
   }
 }

@@ -21,7 +21,23 @@
 }
 .table-ammounts{
   max-height: 400px;
+  width: 30%;
   overflow-y: scroll;
+}
+.mat-column-interval{
+  width: 40%;
+}
+.mat-column-ammount{
+  width: 23%;
+}
+.mat-column-expected{
+  width: 23%;
+}
+.mat-column-error{
+  width: 14%;
+}
+.mat-column-error-percentage{
+  width: 14%;
 }
 .table-ammounts::-webkit-scrollbar{
   background-color: white;

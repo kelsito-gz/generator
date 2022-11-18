@@ -20,8 +20,12 @@ export class VisualizerComponent implements OnInit {
 
   barChartData: ChartData<'bar'>;
 
-  displayedColumns = ["interval", "ammount"];
+  Math: Math = Math;
+
+  displayedColumns = ["interval", "ammount", "expected", "error", "error-percentage"];
   labels: string[] = [];
+  expectedAmount: number[] = [];
+  totalGenerated: number = 0;
 
   constructor(private dialog: MatDialog) { }
 
@@ -32,6 +36,7 @@ export class VisualizerComponent implements OnInit {
 
   private initChart(): void{
     this.labels = this.truncateLabels(this.generator.getLabels())
+    this.expectedAmount = this.generator.getExpectedFrecuency(this.totalGenerated);
     this.barChartData = {
       labels: this.labels,
       datasets: [{
@@ -60,6 +65,8 @@ export class VisualizerComponent implements OnInit {
   generateNumber(){
     this.number = this.generator.nextNumber();
     this.addNumberToGraphic(this.number);
+    this.totalGenerated++;
+    this.expectedAmount = this.generator.getExpectedFrecuency(this.totalGenerated);
   }
 
   generateNumbers(){

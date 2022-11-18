@@ -5,6 +5,8 @@ export interface ITypeGenerator{
   getLabels(): string[];
   getNumberDistribution(num: number, num2?: number): number | number[];
   isNormal(): boolean;
+  //The expected frequency is obtained by subtracting the cumulative quantities from the interval limits.
+  getExpectedFrecuency(totalAmount: number): number[];
 }
 
 export class UniformGenerator implements ITypeGenerator{
@@ -37,6 +39,10 @@ export class UniformGenerator implements ITypeGenerator{
 
   isNormal(): boolean {
     return false;
+  }
+
+  getExpectedFrecuency(totalAmount: number): number[]{
+    return new Array(this.numberIntervals).fill(totalAmount/this.numberIntervals);
   }
 
 }
@@ -85,6 +91,26 @@ export class NormalGenerator implements ITypeGenerator{
   private truncatetofive(num: number): number{
     return Math.trunc(num*100000)/100000;
   }
+
+  getExpectedFrecuency(totalAmount: number): number[]{
+    let labels = this.getLabels();
+    let expectedFrecuency: number[] = [];
+    labels.forEach(label => {
+      let coma: string[] = label.split(",");
+      let lowerLimit: number = coma[0].includes("∞") ? -9*Math.exp(10000) : parseFloat(coma[0].substring(1));
+      let upperLimit: number = coma[1].includes("∞") ? 9*Math.exp(10000) : parseFloat(coma[1].substring(0, coma[1].length - 1));
+      let cumulativeLower: number = this.getCumulative(lowerLimit);
+      let cumulativeUpper: number = this.getCumulative(upperLimit);
+      expectedFrecuency.push((Math.abs(cumulativeUpper - cumulativeLower)*totalAmount));
+    });
+    return expectedFrecuency;
+  }
+
+  private getCumulative(limit: number){
+    let firstPart = 1 / (this.deviation * (Math.trunc(Math.sqrt(2 * Math.PI)*100000)/100000));
+    let secondPart = Math.exp(-0.5 * Math.pow((limit-this.half)/this.deviation, 2));
+    return firstPart * secondPart;
+  }
 }
 
 export class NegativeExponentialGenerator implements ITypeGenerator{
@@ -122,5 +148,23 @@ export class NegativeExponentialGenerator implements ITypeGenerator{
 
   isNormal(): boolean {
     return false;
+  }
+
+  getExpectedFrecuency(totalAmount: number): number[]{
+    let labels = this.getLabels();
+    let expectedFrecuency: number[] = [];
+    labels.forEach(label => {
+      let coma: string[] = label.split(",");
+      let lowerLimit: number = coma[0].includes("∞") ? -9*Math.exp(10000) : parseFloat(coma[0].substring(1));
+      let upperLimit: number = coma[1].includes("∞") ? 9*Math.exp(10000) : parseFloat(coma[1].substring(0, coma[1].length - 1));
+      let cumulativeLower: number = this.getCumulative(lowerLimit);
+      let cumulativeUpper: number = this.getCumulative(upperLimit);
+      expectedFrecuency.push((Math.abs(cumulativeUpper - cumulativeLower)*totalAmount));
+    });
+    return expectedFrecuency;
+  }
+
+  private getCumulative(limit: number){
+    return Math.exp(this.half * limit * -1);
   }
 }

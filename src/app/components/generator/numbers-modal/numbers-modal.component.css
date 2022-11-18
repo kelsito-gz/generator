@@ -17,3 +17,7 @@
 .modal-actions button:nth-child(2){
   border-color: #f44336;
 }
+.modal-header .btn-close {
+  padding: 1.4rem 0.5rem;
+  margin: -22.5rem -0.5rem -0.5rem auto;
+}

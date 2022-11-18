@@ -46,7 +46,7 @@
     </mat-horizontal-stepper>
 
     <ng-container *ngIf="numbersGenerator.length">
-      <app-visualizer *ngFor="let generator of numbersGenerator; let i = index" [generator]="generator" [generatorNumber]="i"></app-visualizer>
+      <app-visualizer *ngFor="let generator of numbersGenerator; let i = index" (deleteGenerator)="deleteGenerator($event)" [generator]="generator" [generatorNumber]="i"></app-visualizer>
     </ng-container>
 </div>
 

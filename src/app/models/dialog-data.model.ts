@@ -3,4 +3,5 @@ export class DialogData{
   message: string;
   accept: string;
   cancel: string;
+  showForm: boolean;
 }

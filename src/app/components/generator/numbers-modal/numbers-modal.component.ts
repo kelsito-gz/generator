@@ -14,6 +14,7 @@ export class NumbersModalComponent implements OnInit {
   accept: string;
   cancel: string;
   formNumber: FormControl;
+  showForm: boolean;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) private data: DialogData, public dialogRef: MatDialogRef<NumbersModalComponent>) {
@@ -34,11 +35,17 @@ export class NumbersModalComponent implements OnInit {
       this.message = data.message ? data.message : "Do you accept?";
       this.accept = data.accept ? data.accept : "accept";
       this.cancel = data.cancel ? data.cancel : "cancel";
+      this.showForm = data.showForm != null ? data.showForm : true;
     }
   }
 
   acceptModal(){
-    this.dialogRef.close(this.formNumber.value);
+    if(this.showForm){
+      this.dialogRef.close(this.formNumber.value);
+    }
+    else{
+      this.dialogRef.close(true)
+    }
   }
 
   cancelModal(){

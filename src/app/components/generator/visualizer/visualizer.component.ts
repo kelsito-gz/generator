@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {  } from '@angular/common';
-import { LanguageGenerator, LinealGenerator, MultiplicativeGenerator } from 'src/app/models/generators.model';
+import { IGenerator, LanguageGenerator, LinealGenerator, MultiplicativeGenerator } from 'src/app/models/generators.model';
 import { ChartData, ChartOptions } from 'chart.js';
 import { MatDialog } from '@angular/material/dialog';
 import { NumbersModalComponent } from '../numbers-modal/numbers-modal.component';
@@ -12,8 +12,10 @@ import { NumbersModalComponent } from '../numbers-modal/numbers-modal.component'
 })
 export class VisualizerComponent implements OnInit {
 
-  @Input() generator: LinealGenerator | LanguageGenerator | MultiplicativeGenerator;
+  @Input() generator: IGenerator;
   @Input() generatorNumber: number;
+  @Output() deleteGenerator: EventEmitter<IGenerator> = new EventEmitter();
+
   subtitle: string;
   number: number;
   chartOptions: ChartOptions;
@@ -120,6 +122,26 @@ export class VisualizerComponent implements OnInit {
 
   private getSubititle(): void{
     this.subtitle = this.generator.getData();
+  }
+
+  delete(){
+    const dialogRef = this.dialog.open(NumbersModalComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: {
+        tittle: 'Delete generator',
+        message: 'Are you sure you wanna delete this?',
+        accept: 'Accept',
+        cancel: 'Cancel',
+        showForm: false,
+      },
+      autoFocus: false
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if(res){
+        this.deleteGenerator.emit(this.generator);
+      }
+    })
   }
 
 

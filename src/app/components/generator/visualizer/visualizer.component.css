@@ -19,3 +19,15 @@
 .mat-column-ammount{
   width: 50%;
 }
+.table-ammounts{
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.table-ammounts::-webkit-scrollbar{
+  background-color: white;
+  width: 4px;
+}
+.table-ammounts::-webkit-scrollbar-thumb{
+  background-color: black;
+  width: 2px;
+}

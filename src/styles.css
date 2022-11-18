@@ -43,6 +43,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   text-align: center;
 }
 .mat-header-cell{
-  background-color: #666666;
-  color: white;
+  color: black;
+  text-align: center !important;
+  font-size: 13px;
+  font-weight: bold;
 }

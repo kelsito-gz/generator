@@ -114,9 +114,14 @@ export class NormalGenerator implements ITypeGenerator{
       let coma: string[] = label.split(",");
       let lowerLimit: number = coma[0].includes("∞") ? -9*Math.exp(10000) : parseFloat(coma[0].substring(1));
       let upperLimit: number = coma[1].includes("∞") ? 9*Math.exp(10000) : parseFloat(coma[1].substring(0, coma[1].length - 1));
-      let cumulativeLower: number = this.getCumulative(lowerLimit);
-      let cumulativeUpper: number = this.getCumulative(upperLimit);
-      expectedFrecuency.push((Math.abs(cumulativeUpper - cumulativeLower)*totalAmount));
+      if(coma[0].includes("∞") || coma[1].includes("∞")){
+        //only 0.1% of each side of the values are found outside the three deviations
+        expectedFrecuency.push(Math.abs(totalAmount * 0.1 / 100));
+      } else{
+        let classMark: number = (upperLimit + lowerLimit) / 2;
+        expectedFrecuency.push(Math.abs(this.getCumulative(classMark) * (upperLimit - lowerLimit) * totalAmount));
+      }
+
     });
     return expectedFrecuency;
   }

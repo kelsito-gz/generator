@@ -1,8 +1,10 @@
 .header{
-    background-color: #181818;
-    color: white;
+    /* background-color: #181818; */
+    color: black;
     height: 100vh;
-}
+    background-image: url('../../../assets/header.svg');
+    background-repeat: no-repeat;
+  }
 
 .header h1{
     position: relative;

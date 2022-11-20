@@ -46,8 +46,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div class="col-xs-12">
-      <mat-label>{{ analysis }}</mat-label>
+    <div class="col-xs-12 col-md-6" *ngIf="analysis">
+      <mat-label class="paragraph">{{ analysis }}</mat-label>
     </div>
   </mat-card-content>
   <mat-card-actions align="end">

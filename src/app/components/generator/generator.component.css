@@ -1,7 +1,7 @@
 .mat-stepper-horizontal {
     margin-top: 8px;
   }
-  
+
   .mat-form-field {
     margin-top: 16px;
   }
@@ -18,3 +18,10 @@
     text-align: justify;
     padding-top: 50px;
   }
+
+.body{
+  background-image: url('../../../assets/body.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}

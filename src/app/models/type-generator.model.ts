@@ -7,6 +7,9 @@ export interface ITypeGenerator{
   isNormal(): boolean;
   //The expected frequency is obtained by subtracting the cumulative quantities from the interval limits.
   getExpectedFrecuency(totalAmount: number): number[];
+  getAmountOfEmpiricalData(): number;
+  getDegreesOfFreedom(): number;
+  getDescriptionType(): string;
 }
 
 export class UniformGenerator implements ITypeGenerator{
@@ -43,6 +46,18 @@ export class UniformGenerator implements ITypeGenerator{
 
   getExpectedFrecuency(totalAmount: number): number[]{
     return new Array(this.numberIntervals).fill(totalAmount/this.numberIntervals);
+  }
+
+  getAmountOfEmpiricalData(): number {
+    return 0;
+  }
+
+  getDegreesOfFreedom(): number {
+    return this.numberIntervals - 1 - this.getAmountOfEmpiricalData();
+  }
+
+  getDescriptionType(): string {
+    return "uniform";
   }
 
 }
@@ -111,6 +126,18 @@ export class NormalGenerator implements ITypeGenerator{
     let secondPart = Math.exp(-0.5 * Math.pow((limit-this.half)/this.deviation, 2));
     return firstPart * secondPart;
   }
+
+  getAmountOfEmpiricalData(): number {
+      return 2;
+  }
+
+  getDegreesOfFreedom(): number {
+    return this.numberIntervals - 1 - this.getAmountOfEmpiricalData();
+  }
+
+  getDescriptionType(): string {
+    return "normal";
+  }
 }
 
 export class NegativeExponentialGenerator implements ITypeGenerator{
@@ -166,5 +193,17 @@ export class NegativeExponentialGenerator implements ITypeGenerator{
 
   private getCumulative(limit: number){
     return Math.exp(this.half * limit * -1);
+  }
+
+  getAmountOfEmpiricalData(): number {
+    return 1;
+  }
+
+  getDegreesOfFreedom(): number {
+    return this.numberIntervals - 1 - this.getAmountOfEmpiricalData();
+  }
+
+  getDescriptionType(): string {
+    return "negative exponential";
   }
 }

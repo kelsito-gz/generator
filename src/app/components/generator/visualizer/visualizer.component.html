@@ -38,9 +38,16 @@
           <th mat-header-cell *matHeaderCellDef> Error Percentage</th>
           <td mat-cell *matCellDef="let i = index; let element"> {{ (Math.abs(element - expectedAmount[i]) ?  (Math.abs(element - expectedAmount[i]) / totalGenerated )*100 : 0) | number:'1.2-2'}}%</td>
         </ng-container>
+        <ng-container matColumnDef="goodnes-fit-test">
+          <th mat-header-cell *matHeaderCellDef> Cumulative Goodness and Fit Test </th>
+          <td mat-cell *matCellDef="let i = index;"> {{ cumulativeGoodnesFit[i] | number:'1.2-2' }} </td>
+        </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+    </div>
+    <div class="col-xs-12">
+      <mat-label>{{ analysis }}</mat-label>
     </div>
   </mat-card-content>
   <mat-card-actions align="end">

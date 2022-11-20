@@ -47,7 +47,10 @@ export class VisualizerComponent implements OnInit {
       labels: this.labels,
       datasets: [{
         data: Array(this.generator.typeGenerator.numberIntervals).fill(0),
-        label: `Serie ${this.generatorNumber +1}.`
+        label: `Generated`
+      },{
+        data: this.expectedAmount,
+        label: `Expected`
       }],
     };
     this.chartOptions = {
@@ -129,7 +132,10 @@ export class VisualizerComponent implements OnInit {
   addNumberToGraphic(newNumber: number){
     let dataset = this.barChartData.datasets[0].data.slice();
     dataset[this.getNumberLabel(newNumber as number)] += 1;
-    this.barChartData.datasets = [{data: dataset, label: this.barChartData.datasets[0].label}];
+    this.barChartData.datasets = [
+      {data: dataset, label: this.barChartData.datasets[0].label},
+      {data: this.expectedAmount, label: this.barChartData.datasets[1].label}
+    ];
   }
 
   //This method find the position of the new number in the grapich

@@ -18,7 +18,9 @@
     text-align: justify;
     padding-top: 50px;
   }
-
+.mat-card{
+  margin-top: 20px;
+}
 .body{
   background-image: url('../../../assets/body.svg');
   background-repeat: no-repeat;

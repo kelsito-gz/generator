@@ -4,6 +4,7 @@
     height: 100vh;
     background-image: url('../../../assets/header.svg');
     background-repeat: no-repeat;
+    background-position: left;
   }
 
 .header h1{
@@ -11,24 +12,22 @@
     display: inline-block;
     font-size: 24px;
     top: 20vh;
-    left: 70vw;
+    left: 65vw;
     margin: 0;
 }
 
-@media (max-width: 1280px) {
-    .header h1{
-        left: 50vw;
-    }
-}
-
-@media (max-width: 768px){
-    .header h1{
-        position: absolute;
-        display: block;
-        width: 100vw;
-        text-align: center;
-        margin: 150px auto;
-        top: 0;
-        left: 0;
-    }
+@media (max-width: 800px) {
+  .header h1{
+    position: absolute;
+    display: block;
+    width: 100vw;
+    text-align: center;
+    margin: 20px auto;
+    top: 0;
+    left: 0;
+  }
+  .header{
+    background-size: cover;
+    background-position: center;
+  }
 }

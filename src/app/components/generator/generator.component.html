@@ -1,6 +1,7 @@
 <div class="body">
   <div class="container">
-    <mat-label class="paragraph">A <span class="bold">pseudorandom number generator</span> is a deterministic number generator that is based on the initial values of a seed.
+    <mat-card>
+      <mat-label class="paragraph">A <span class="bold">pseudorandom number generator</span> is a deterministic number generator that is based on the initial values of a seed.
         It is an algorithm that generates numbers between 0 and 1 based on a mathematical formula and the input values dictate how uniform the entered values will be.
         The numbers does not includes the 1.
         The <span class="bold">entered values </span> require a study to be able to find the ones that generate the best results, but there are certain rules to try to comply with for this.
@@ -23,7 +24,8 @@
             <li>Z1 = √(-2*ln(1-RNDi)) * sen(2π RNDi+1)</li>
             <li>Z2 = √(-2*ln(1-RNDi)) * cos(2π RNDi+1)</li>
         </ul>
-    </mat-label>
+      </mat-label>
+    </mat-card>
 
     <mat-horizontal-stepper class="stepper">
         <mat-step label="Lineal" state="lineal">

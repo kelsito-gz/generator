@@ -6,11 +6,8 @@
   font-size: 50px;
   display: block;
   text-align: center;
+  overflow: scroll;
   padding: 50px 0;
-}
-
-.inline{
-  display: inline-block;
 }
 
 .mat-column-interval{
@@ -21,23 +18,30 @@
 }
 .table-ammounts{
   max-height: 400px;
-  width: 30%;
   overflow-y: scroll;
+  overflow-x: scroll;
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid #cdcdcd;
+  border-radius: 1px;
 }
 .mat-column-interval{
-  width: 40%;
+  width: 17%;
 }
 .mat-column-ammount{
-  width: 23%;
+  width: 17%;
 }
 .mat-column-expected{
-  width: 23%;
+  width: 17%;
 }
 .mat-column-error{
-  width: 14%;
+  width: 17%;
 }
 .mat-column-error-percentage{
-  width: 14%;
+  width: 16%;
+}
+.mat-column-goodnes-fit-test{
+  width: 16%;
 }
 .table-ammounts::-webkit-scrollbar{
   background-color: white;
@@ -46,4 +50,9 @@
 .table-ammounts::-webkit-scrollbar-thumb{
   background-color: black;
   width: 2px;
+}
+.analysis{
+  width: 80%;
+  margin: 0 auto;
+  display: block;
 }

@@ -6,17 +6,18 @@
   </mat-card-header>
   <mat-card-content>
     <mat-label *ngIf="number" class="number">{{number}}</mat-label>
-    <div style="width: 70%; height: 400px;" class="col-xs-12 col-md-10 inline">
-      <canvas
-      baseChart
-      [datasets]="barChartData.datasets"
-      [labels]="barChartData.labels"
-      type="bar"
-      [options]="chartOptions"
-      >
-      </canvas>
+    <div class="col-xs-12">
+      <div style="width: 90%; height: 400px; margin: 0 auto;">
+        <canvas
+        baseChart
+        [datasets]="barChartData.datasets"
+        [labels]="barChartData.labels"
+        type="bar"
+        [options]="chartOptions">
+        </canvas>
+      </div>
     </div>
-    <div class="col-xs-12 col-md-2 inline table-ammounts">
+    <div class="col-xs-12 table-ammounts">
       <table mat-table [dataSource]="barChartData.datasets[0].data">
         <ng-container matColumnDef="interval">
           <th mat-header-cell *matHeaderCellDef> Interval </th>
@@ -46,8 +47,8 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div class="col-xs-12 col-md-6" *ngIf="analysis">
-      <mat-label class="paragraph">{{ analysis }}</mat-label>
+    <div class="col-xs-12" *ngIf="analysis">
+      <mat-label class="paragraph analysis">{{ analysis }}</mat-label>
     </div>
   </mat-card-content>
   <mat-card-actions align="end">

@@ -24,7 +24,7 @@ export class UniformGenerator implements ITypeGenerator{
   }
 
   getData(): string{
-    return `Uniform: Interval Size: ${this.numberIntervals}, Lower Limit: ${this.lowerLimit}, Upper Limit: ${this.upperLimit}`;
+    return `Uniform: Intervals: ${this.numberIntervals}, Lower Limit: ${this.lowerLimit}, Upper Limit: ${this.upperLimit}`;
   }
 
   getLabels(): string[]{
@@ -74,7 +74,7 @@ export class NormalGenerator implements ITypeGenerator{
   }
 
   getData(): string{
-    return `Normal: Interval Size: <${this.numberIntervals}, Half: ${this.half}, Deviation: ${this.deviation}`;
+    return `Normal: Intervals: ${this.numberIntervals}, Half: ${this.half}, Deviation: ${this.deviation}`;
   }
 
   getLabels(): string[]{
@@ -155,7 +155,7 @@ export class NegativeExponentialGenerator implements ITypeGenerator{
   }
 
   getData(): string{
-    return `Negative Exponential: Interval Size: ${this.numberIntervals}, Half: ${this.half}`;
+    return `Negative Exponential: Intervals: ${this.numberIntervals}, Half: ${this.half}`;
   }
 
   getLabels(): string[]{
